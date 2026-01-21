@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futi de Quinta</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-actions">
+      <button id="clear-all" type="button" class="ghost">Limpar tudo</button>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="card">
+      <header class="card-header">
+        <div>
+          <h2>Jogadores</h2>
+          <p>Preencha até 25 jogadores e suas estrelas (1-5).</p>
+        </div>
+        <button id="draw" type="button" class="primary">Sortear times</button>
+      </header>
+
+      <div class="table-header">
+        <span>#</span>
+        <span>Nome</span>
+        <span>Estrelas</span>
+      </div>
+      <div id="players" class="players-grid"></div>
+      <p class="hint">Cada time terá 5 jogadores. Você pode preencher menos de 25; o sorteio cria apenas os times necessários.</p>
+    </section>
+
+    <section class="card">
+      <header class="card-header">
+        <div>
+          <h2>Times sorteados</h2>
+          <p>Distribuição balanceada por estrelas.</p>
+        </div>
+      </header>
+      <div id="results" class="teams"></div>
+    </section>
+
+    <section class="card">
+      <header class="card-header">
+        <div>
+          <h2>Histórico de registros</h2>
+          <p>Histórico dos times sorteados anteriormente.</p>
+        </div>
+        <button id="clear-history" type="button" class="ghost small">Apagar histórico</button>
+      </header>
+      <div id="history-list" class="history-list"></div>
+    </section>
+  </main>
+
+  <template id="player-row">
+    <div class="row">
+      <span class="idx"></span>
+      <input type="text" class="name" placeholder="Nome do jogador">
+      <div class="stars star-input" data-value="">
+        <button type="button" class="star" data-star="1">★</button>
+        <button type="button" class="star" data-star="2">★</button>
+        <button type="button" class="star" data-star="3">★</button>
+        <button type="button" class="star" data-star="4">★</button>
+        <button type="button" class="star" data-star="5">★</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
