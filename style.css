@@ -629,38 +629,6 @@ input.name {
   }
 }
 
-.app-footer {
-  text-align: center;
-  padding: 24px 18px;
-  margin-top: 32px;
-  background-color: black;
-  color: #94a3b8;
-  font-size: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  z-index: 1;
-}
-
-.app-footer p {
-  margin: 0;
-}
-
-.app-footer strong {
-  color: #cbd5e1;
-  font-weight: 600;
-}
-
-.app-footer a {
-  color: #cbd5e1;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.app-footer a:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
 @media (max-width: 768px) {
   .app-footer {
     padding: 20px 12px;
