@@ -1,8 +1,9 @@
 const MAX_PLAYERS = 25;
-const TEAM_SIZE = 5;
+const DEFAULT_TEAM_SIZE = 5;
 const TEAM_COUNT = 5;
 const HISTORY_KEY = "futiQuintaHistory";
 const PLAYERS_KEY = "futiQuintaPlayers";
+const TEAM_SIZE_KEY = "futiQuintaTeamSize";
 const HISTORY_LIMIT = 10;
 
 const playersContainer = document.getElementById("players");
@@ -11,6 +12,39 @@ const resultsContainer = document.getElementById("results");
 const clearAllBtn = document.getElementById("clear-all");
 const clearHistoryBtn = document.getElementById("clear-history");
 const historyList = document.getElementById("history-list");
+const teamSizeSelect = document.getElementById("team-size-select");
+
+let TEAM_SIZE = DEFAULT_TEAM_SIZE;
+
+function loadTeamSize() {
+  try {
+    const saved = localStorage.getItem(TEAM_SIZE_KEY);
+    if (saved) {
+      const size = parseInt(saved, 10);
+      if (size >= 4 && size <= 11) {
+        TEAM_SIZE = size;
+        if (teamSizeSelect) {
+          teamSizeSelect.value = String(size);
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("Erro ao carregar tamanho do time.", e);
+    TEAM_SIZE = DEFAULT_TEAM_SIZE;
+  }
+}
+
+function saveTeamSize(size) {
+  try {
+    const sizeNum = parseInt(size, 10);
+    if (sizeNum >= 4 && sizeNum <= 11) {
+      TEAM_SIZE = sizeNum;
+      localStorage.setItem(TEAM_SIZE_KEY, String(sizeNum));
+    }
+  } catch (e) {
+    console.warn("Erro ao salvar tamanho do time.", e);
+  }
+}
 
 function setStarValue(container, value) {
   container.dataset.value = value ? String(value) : "";
@@ -342,6 +376,7 @@ function init() {
     return;
   }
   
+  loadTeamSize();
   createPlayerRows();
   loadPlayers();
   const history = loadHistory();
@@ -350,6 +385,12 @@ function init() {
   drawButton.addEventListener("click", handleDraw);
   clearAllBtn.addEventListener("click", handleClearAll);
   clearHistoryBtn.addEventListener("click", handleClearHistory);
+  
+  if (teamSizeSelect) {
+    teamSizeSelect.addEventListener("change", (e) => {
+      saveTeamSize(e.target.value);
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init);
